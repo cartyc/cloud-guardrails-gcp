@@ -23,7 +23,7 @@ gcloud services enable cloudasset.googleapis.com
 2. Create a storage bucket for storing the asset inventory output
 ```
 export MY_BUCKET_NAME=<bucket-name>
-gsutil mb gs://$MY_BUCKET_NAME
+gsutil mb -l northamerica-northeast1 gs://$MY_BUCKET_NAME
 ```
 
 3. Run inventory report
@@ -49,6 +49,10 @@ gsutil cp gs://$MY_BUCKET_NAME/resource_inventory.json ./assets
 
 To install the dependancies locally you can run the `install.sh` file. This will download `conftest` and put it in `/usr/local/bin`.
 
+```
+./install.sh
+```
+
 To confirm that the install was successful run `conftest --version`, you should get output similar to the following:
 ```
 Version: 0.21.0
@@ -65,10 +69,22 @@ To run only the tests
 ./run.sh
 ```
 
-The following will run the configuration and download of the assets as well as run.sh
+The following will run the configuration and download of the assets as well as run.sh.
+
+Supported Flags
+- `-b` - Bucket where the Cloud Asset Inventory will be saved `required`
+- `-t` - Content type to export. Options are `resource`, `iam-policy` and `org-policy`. Defaults to `resource`
+- `-s` - Will you be targeting and Organization or Project. Options are `organization` or `project`. Default is `organization`.
+- `-i` - ID of the project or organization. `required`
 
 ```
-./run-all.sh 
+# Full command with args
+./run-all.sh -b {BUCKET_NAME} -t {TYPE} -s {SCOPE} -i {ID}
+```
+
+```
+# Minimal Command with args
+./run-all.sh -b {BUCKET_NAME} -i {ID}
 ```
 
 ### Container
