@@ -14,12 +14,6 @@
 # limitations under the License.
 #################
 
-# Capture Inputs
-
-# BUCKET="$1"
-# TYPE="$2"
-# SCOPE="$3"
-# ID="$4"
 
 while getopts b:t:s:i:h: flag
 do
