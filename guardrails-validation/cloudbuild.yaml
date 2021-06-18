@@ -13,9 +13,9 @@
 # limitations under the License.
 
 steps:
-- name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: 'bash'
-  args: ['guardrails-validation/tests.sh']
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   entrypoint: 'bash'
+#   args: ['guardrails-validation/tests.sh']
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-t', 'northamerica-northeast1-docker.pkg.dev/$PROJECT_ID/guardrails:tag1', './guardrails-validation/' ]
 images:
